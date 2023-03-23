@@ -34,73 +34,75 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
 
         self::$candidates = CandidatesCollection::create();
 
-        // psr-mock/http-factory-implementation 1.0+ is PSR-18 compatible.
         self::$candidates->add(CandidateEntity::create(
             package: 'psr-mock/http-factory-implementation',
             version: '^1.0',
             builder: static fn (string $class = '\PsrMock\Psr17\ResponseFactory'): object => new $class(),
         ));
 
-        // nyholm/psr7 1.2+ is PSR-17 compatible.
-        self::$candidates->add(CandidateEntity::create(
-            package: 'nyholm/psr7',
-            version: '^1.2',
-            builder: static fn (string $class = '\Nyholm\Psr7\Factory\Psr17Factory'): object => new $class(),
-        ));
-
-        // guzzlehttp/psr7 1.6+ is PSR-17 compatible.
         self::$candidates->add(CandidateEntity::create(
             package: 'guzzlehttp/psr7',
-            version: '^1.6',
+            version: '^2.0',
             builder: static fn (string $class = '\GuzzleHttp\Psr7\HttpFactory'): object => new $class(),
         ));
 
-        // zendframework/zend-diactoros 2.0+ is PSR-17 compatible. (Caution: Abandoned!)
+        self::$candidates->add(CandidateEntity::create(
+            package: 'nyholm/psr7',
+            version: '^0.2.2',
+            builder: static fn (string $class = '\Nyholm\Psr7\Factory\MessageFactory'): object => new $class(),
+        ));
+
+        self::$candidates->add(CandidateEntity::create(
+            package: 'nyholm/psr7',
+            version: '^1.0',
+            builder: static fn (string $class = '\Nyholm\Psr7\Factory\Psr17Factory'): object => new $class(),
+        ));
+
+        self::$candidates->add(CandidateEntity::create(
+            package: 'http-interop/http-factory-guzzle',
+            version: '^0.2 | ^1.0',
+            builder: static fn (string $class = '\Http\Factory\Guzzle\ResppnseFactory'): object => new $class(),
+        ));
+
         self::$candidates->add(CandidateEntity::create(
             package: 'zendframework/zend-diactoros',
             version: '^2.0',
             builder: static fn (string $class = '\Zend\Diactoros\ResponseFactory'): object => new $class(),
         ));
 
-        // http-interop/http-factory-guzzle 1.0+ is PSR-17 compatible.
-        self::$candidates->add(CandidateEntity::create(
-            package: 'http-interop/http-factory-guzzle',
-            version: '^1.0',
-            builder: static fn (string $class = '\Http\Factory\Guzzle\ResponseFactory'): object => new $class(),
-        ));
-
-        // laminas/laminas-diactoros 2.0+ is PSR-17 compatible
         self::$candidates->add(CandidateEntity::create(
             package: 'laminas/laminas-diactoros',
             version: '^2.0',
             builder: static fn (string $class = '\Laminas\Diactoros\ResponseFactory'): object => new $class(),
         ));
 
-        // slim/psr7 1.0+ is PSR-17 compatible.
         self::$candidates->add(CandidateEntity::create(
             package: 'slim/psr7',
             version: '^1.0',
             builder: static fn (string $class = '\Slim\Psr7\Factory\ResponseFactory'): object => new $class(),
         ));
 
-        // typo3/core 10.0+ is PSR-17 compatible.
         self::$candidates->add(CandidateEntity::create(
             package: 'typo3/core',
-            version: '^10.0',
+            version: '^10.1 | ^11.0 | ^12.0',
             builder: static fn (string $class = '\TYPO3\CMS\Core\Http\ResponseFactory'): object => new $class(),
         ));
 
-        // nimbly/capsule 1.0+ is PSR-17 compatible.
         self::$candidates->add(CandidateEntity::create(
             package: 'nimbly/capsule',
-            version: '^1.0',
+            version: '^2.0',
             builder: static fn (string $class = '\Nimbly\Capsule\Factory\ResponseFactory'): object => new $class(),
         ));
 
-        // httpsoft/http-message 1.0+ is PSR-17 compatible.
+        self::$candidates->add(CandidateEntity::create(
+            package: 'tuupola/http-factory',
+            version: '^1.0.2',
+            builder: static fn (string $class = '\Tuupola\Http\Factory\ResponseFactory'): object => new $class(),
+        ));
+
         self::$candidates->add(CandidateEntity::create(
             package: 'httpsoft/http-message',
-            version: '^1.0',
+            version: '^1.0.4',
             builder: static fn (string $class = '\HttpSoft\Message\ResponseFactory'): object => new $class(),
         ));
 
