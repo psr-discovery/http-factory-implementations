@@ -39,16 +39,16 @@ composer require --dev psr-discovery/http-factory-implementations
 ## Usage
 
 ```php
-use PsrDiscovery\Discovery;
+use PsrDiscovery\Discover;
 
 // Returns a PSR-17 RequestFactoryInterface instance
-$requestFactory = Discovery::httpRequestFactory();
+$requestFactory = Discover::httpRequestFactory();
 
 // Returns a PSR-17 ResponseFactoryInterface instance
-$responseFactory = Discovery::httpResponseFactory();
+$responseFactory = Discover::httpResponseFactory();
 
 // Returns a PSR-17 StreamFactoryInterface instance
-$streamFactory = Discovery::httpStreamFactory();
+$streamFactory = Discover::httpStreamFactory();
 
 // Returns a PSR-7 RequestInterface instance
 $request = $requestFactory->createRequest('GET', 'https://example.com');
@@ -56,14 +56,14 @@ $request = $requestFactory->createRequest('GET', 'https://example.com');
 
 ## Handling Failures
 
-If the library is unable to discover a suitable PSR-17 implementation, the `Discovery::httpRequestFactory()`, `Discovery::httpResponseFactory()` or `Discovery::httpStreamFactory()` discovery methods will simply return `null`. This allows you to handle the failure gracefully, for example by falling back to a default implementation.
+If the library is unable to discover a suitable PSR-17 implementation, the `Discover::httpRequestFactory()`, `Discover::httpResponseFactory()` or `Discover::httpStreamFactory()` discovery methods will simply return `null`. This allows you to handle the failure gracefully, for example by falling back to a default implementation.
 
 Example:
 
 ```php
-use PsrDiscovery\Discovery;
+use PsrDiscovery\Discover;
 
-$requestFactory = Discovery::httpRequestFactory();
+$requestFactory = Discover::httpRequestFactory();
 
 if ($requestFactory === null) {
     // No suitable HTTP RequestFactory implementation was discovered.
@@ -74,20 +74,20 @@ if ($requestFactory === null) {
 
 ## Singletons
 
-By default, the `Discovery::httpRequestFactory()`, `Discovery::httpResponseFactory()` or `Discovery::httpStreamFactory()` methods will always return a new instance of the discovered implementation. If you wish to use a singleton instance instead, simply pass `true` to the `$singleton` parameter of the discovery method.
+By default, the `Discover::httpRequestFactory()`, `Discover::httpResponseFactory()` or `Discover::httpStreamFactory()` methods will always return a new instance of the discovered implementation. If you wish to use a singleton instance instead, simply pass `true` to the `$singleton` parameter of the discovery method.
 
 Example:
 
 ```php
-use PsrDiscovery\Discovery;
+use PsrDiscovery\Discover;
 
 // $httpResponseFactory1 !== $httpResponseFactory2 (default)
-$httpResponseFactory1 = Discovery::httpResponseFactory();
-$httpResponseFactory2 = Discovery::httpResponseFactory();
+$httpResponseFactory1 = Discover::httpResponseFactory();
+$httpResponseFactory2 = Discover::httpResponseFactory();
 
 // $httpResponseFactory1 === $httpResponseFactory2
-$httpResponseFactory1 = Discovery::httpResponseFactory(singleton: true);
-$httpResponseFactory2 = Discovery::httpResponseFactory(singleton: true);
+$httpResponseFactory1 = Discover::httpResponseFactory(singleton: true);
+$httpResponseFactory2 = Discover::httpResponseFactory(singleton: true);
 ```
 
 ## Mocking Priority
@@ -101,7 +101,7 @@ The expectation is that these mocking libraries will always be installed as deve
 If you wish to prefer a specific implementation over others, you can `prefer()` it by package name:
 
 ```php
-use PsrDiscovery\Discovery;
+use PsrDiscovery\Discover;
 use PsrDiscovery\Implementations\Psr17\RequestFactories;
 
 // Prefer the a specific implementation of PSR-17 over others.
@@ -110,7 +110,7 @@ RequestFactories::prefer('nyholm/psr7');
 // Return an instance of Nyholm\Psr7\Factory\Psr17Factory,
 // or the next available from the list of candidates,
 // Returns null if none are discovered.
-$factory = Discovery::httpRequestFactory();
+$factory = Discover::httpRequestFactory();
 ```
 
 In this case, this will cause the `httpRequestFactory()` method to return the preferred implementation if it is available, otherwise, it will fall back to the default behavior. The same applies to `httpResponseFactory()` and `httpStreamFactory()` when their relevant classes are configured similarly.
@@ -122,7 +122,7 @@ Note that assigning a preferred implementation will give it priority over the de
 If you wish to force a specific implementation and ignore the rest of the discovery candidates, you can `use()` its package name:
 
 ```php
-use PsrDiscovery\Discovery;
+use PsrDiscovery\Discover;
 use PsrDiscovery\Implementations\Psr17\ResponseFactories;
 
 // Only discover a specific implementation of PSR-17.
@@ -130,7 +130,7 @@ ResponseFactories::use('nyholm/psr7');
 
 // Return an instance of Nyholm\Psr7\Factory\Psr17Factory,
 // or null if it is not available.
-$factory = Discovery::httpResponseFactory();
+$factory = Discover::httpResponseFactory();
 ```
 
 In this case, this will cause the `httpResponseFactory()` method to return the preferred implementation if it is available, otherwise, it will return `null`. The same applies to `httpRequestFactory()` and `httpStreamFactory()` when their relevant classes are configured similarly.
