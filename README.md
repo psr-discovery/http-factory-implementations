@@ -24,9 +24,22 @@ Successful discovery requires the presence of a compatible implementation in the
 
 ## Implementations
 
-The discovery of available implementations is based on a list of well-known libraries that provide the `psr/http-factory-implementation` interface. These include:
+The discovery of available implementations is based on [a list of well-known libraries](https://packagist.org/providers/psr/http-factory-implementation) that support the `psr/http-factory-implementation` interface. These include:
 
--   ...
+-   [guzzlehttp/psr7](https://github.com/guzzle/psr7) ^2.0
+-   [nyholm/psr7](https://github.com/Nyholm/psr7) ^0.2.2 | ^1.0
+-   [http-interop/http-factory-guzzle](https://github.com/http-interop/http-factory-guzzle) ^0.2 | ^1.0
+-   [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) ^2.0
+-   [laminas/laminas-diactoros](https://github.com/laminas/laminas-diactoros) ^2.0
+-   [slim/psr7](https://github.com/slimphp/Slim-Psr7) ^1.0
+-   [typo3/core](https://github.com/TYPO3-CMS/core) ^10.1 | ^11.0 | ^12.0
+-   [nimbly/capsule](https://github.com/nimbly/Capsule) ^2.0
+-   [tuupola/http-factory](https://github.com/tuupola/http-factory) ^1.0.2
+-   [httpsoft/http-message](https://github.com/httpsoft/http-message) ^1.0.4
+
+The following mock implementations are also available:
+
+-   [psr-mock/http-factory-implementation](https://github.com/psr-mock/http-factory-implementation) ^1.0
 
 If [a particular implementation](https://packagist.org/providers/psr/http-factory-implementation) is missing that you'd like to see, please open a pull request adding support.
 
