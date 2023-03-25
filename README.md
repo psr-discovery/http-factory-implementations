@@ -1,6 +1,6 @@
 **Lightweight library that discovers available [PSR-17 HTTP Factory](https://www.php-fig.org/psr/psr-17/) implementations by searching for a list of well-known classes that implement the relevant interface, and returns an instance of the first one that is found.**
 
-This package is part of the [psr-discovery/discovery](https://github.com/psr-discovery/discovery) PSR discovery collection, which also supports [PSR-18 HTTP Clients](https://github.com/psr-discovery/http-client-implementations), [PSR-14 Event Dispatchers](https://github.com/psr-discovery/event-dispatcher-implementations), [PSR-11 Containers](https://github.com/psr-discovery/container-implementations), [PSR-6 Cache](https://github.com/psr-discovery/cache-implementations) and [PSR-3 Loggers](https://github.com/psr-discovery/log-implementations).
+This package is part of the [psr-discovery](https://github.com/psr-discovery/discovery) collection, which also supports [PSR-18 HTTP Clients](https://github.com/psr-discovery/http-client-implementations), [PSR-14 Event Dispatchers](https://github.com/psr-discovery/event-dispatcher-implementations), [PSR-11 Containers](https://github.com/psr-discovery/container-implementations), [PSR-6 Cache](https://github.com/psr-discovery/cache-implementations) and [PSR-3 Loggers](https://github.com/psr-discovery/log-implementations).
 
 This is largely intended for inclusion in libraries like SDKs that wish to support PSR-17 Factories without requiring hard dependencies on specific implementations or demanding extra configuration by users.
 
@@ -24,18 +24,18 @@ Successful discovery requires the presence of a compatible implementation in the
 
 ## Implementations
 
-The discovery of available implementations is based on [a list of well-known libraries](https://packagist.org/providers/psr/http-factory-implementation) that support the `psr/http-factory-implementation` interface. These include:
+The following `psr/http-factory-implementation` implementations are discovered and instantiated automatically:
 
 -   [guzzlehttp/psr7](https://github.com/guzzle/psr7) ^2.0
--   [nyholm/psr7](https://github.com/Nyholm/psr7) ^0.2.2 | ^1.0
 -   [http-interop/http-factory-guzzle](https://github.com/http-interop/http-factory-guzzle) ^0.2 | ^1.0
--   [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) ^2.0
--   [laminas/laminas-diactoros](https://github.com/laminas/laminas-diactoros) ^2.0
--   [slim/psr7](https://github.com/slimphp/Slim-Psr7) ^1.0
--   [typo3/core](https://github.com/TYPO3-CMS/core) ^10.1 | ^11.0 | ^12.0
--   [nimbly/capsule](https://github.com/nimbly/Capsule) ^2.0
--   [tuupola/http-factory](https://github.com/tuupola/http-factory) ^1.0.2
 -   [httpsoft/http-message](https://github.com/httpsoft/http-message) ^1.0.4
+-   [laminas/laminas-diactoros](https://github.com/laminas/laminas-diactoros) ^2.0
+-   [nimbly/capsule](https://github.com/nimbly/Capsule) ^2.0
+-   [nyholm/psr7](https://github.com/Nyholm/psr7) ^0.2.2 | ^1.0
+-   [slim/psr7](https://github.com/slimphp/Slim-Psr7) ^1.0
+-   [tuupola/http-factory](https://github.com/tuupola/http-factory) ^1.0.2
+-   [typo3/core](https://github.com/TYPO3-CMS/core) ^10.1 | ^11.0 | ^12.0
+-   [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) ^2.0
 
 The following mock implementations are also available:
 
