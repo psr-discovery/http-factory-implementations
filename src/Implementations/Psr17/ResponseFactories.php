@@ -13,14 +13,31 @@ use PsrDiscovery\Implementations\Implementation;
 
 final class ResponseFactories extends Implementation implements ResponseFactoriesContract
 {
-    private static ?CandidatesCollection $candidates                     = null;
-    private static ?ResponseFactoryInterface $singleton                  = null;
-    private static ?ResponseFactoryInterface $using                      = null;
+    private static ?CandidatesCollection     $candidates         = null;
+    private static ?CandidatesCollection     $extendedCandidates = null;
+    private static ?ResponseFactoryInterface $singleton          = null;
+    private static ?ResponseFactoryInterface $using              = null;
 
     public static function add(CandidateEntity $candidate): void
     {
+        self::$candidates ??= CandidatesCollection::create();
         parent::add($candidate);
         self::use(null);
+    }
+
+    /**
+     * @psalm-suppress MixedInferredReturnType,MixedReturnStatement
+     */
+    public static function allCandidates(): CandidatesCollection
+    {
+        if (null !== self::$extendedCandidates) {
+            return self::$extendedCandidates;
+        }
+
+        self::$extendedCandidates = CandidatesCollection::create();
+        self::$extendedCandidates->set(self::candidates());
+
+        return self::$extendedCandidates;
     }
 
     /**
@@ -119,6 +136,11 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
         }
 
         return Discover::httpResponseFactory();
+    }
+
+    public static function discoveries(): array
+    {
+        return Discover::httpResponseFactories();
     }
 
     public static function prefer(string $package): void

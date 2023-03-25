@@ -13,15 +13,31 @@ use PsrDiscovery\Implementations\Implementation;
 
 final class RequestFactories extends Implementation implements RequestFactoriesContract
 {
-    private static ?CandidatesCollection $candidates                    = null;
-    private static ?RequestFactoryInterface $singleton                  = null;
-    private static ?RequestFactoryInterface $using                      = null;
+    private static ?CandidatesCollection    $candidates         = null;
+    private static ?CandidatesCollection    $extendedCandidates = null;
+    private static ?RequestFactoryInterface $singleton          = null;
+    private static ?RequestFactoryInterface $using              = null;
 
     public static function add(CandidateEntity $candidate): void
     {
         self::$candidates ??= CandidatesCollection::create();
         parent::add($candidate);
         self::use(null);
+    }
+
+    /**
+     * @psalm-suppress MixedInferredReturnType,MixedReturnStatement
+     */
+    public static function allCandidates(): CandidatesCollection
+    {
+        if (null !== self::$extendedCandidates) {
+            return self::$extendedCandidates;
+        }
+
+        self::$extendedCandidates = CandidatesCollection::create();
+        self::$extendedCandidates->set(self::candidates());
+
+        return self::$extendedCandidates;
     }
 
     /**
@@ -120,6 +136,11 @@ final class RequestFactories extends Implementation implements RequestFactoriesC
         }
 
         return Discover::httpRequestFactory();
+    }
+
+    public static function discoveries(): array
+    {
+        return Discover::httpRequestFactories();
     }
 
     public static function prefer(string $package): void
