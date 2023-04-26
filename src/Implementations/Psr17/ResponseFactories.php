@@ -78,7 +78,7 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
         self::$candidates->add(CandidateEntity::create(
             package: 'http-interop/http-factory-guzzle',
             version: '^0.2 | ^1.0',
-            builder: static fn (string $class = '\Http\Factory\Guzzle\ResppnseFactory'): object => new $class(),
+            builder: static fn (string $class = '\Http\Factory\Guzzle\ResponseFactory'): object => new $class(),
         ));
 
         self::$candidates->add(CandidateEntity::create(
