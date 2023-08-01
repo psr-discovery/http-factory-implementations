@@ -13,10 +13,13 @@ use PsrDiscovery\Implementations\Implementation;
 
 final class StreamFactories extends Implementation implements StreamFactoriesContract
 {
-    private static ?CandidatesCollection   $candidates         = null;
+    private static ?CandidatesCollection   $candidates = null;
+
     private static ?CandidatesCollection   $extendedCandidates = null;
-    private static ?StreamFactoryInterface $singleton          = null;
-    private static ?StreamFactoryInterface $using              = null;
+
+    private static ?StreamFactoryInterface $singleton = null;
+
+    private static ?StreamFactoryInterface $using = null;
 
     public static function add(CandidateEntity $candidate): void
     {
@@ -30,7 +33,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (null !== self::$extendedCandidates) {
+        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -45,7 +48,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function candidates(): CandidatesCollection
     {
-        if (null !== self::$candidates) {
+        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -131,7 +134,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function discover(): ?StreamFactoryInterface
     {
-        if (null !== self::$using) {
+        if (self::$using instanceof \Psr\Http\Message\StreamFactoryInterface) {
             return self::$using;
         }
 
@@ -159,7 +162,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
 
     public static function singleton(): ?StreamFactoryInterface
     {
-        if (null !== self::$using) {
+        if (self::$using instanceof \Psr\Http\Message\StreamFactoryInterface) {
             return self::$using;
         }
 
@@ -169,6 +172,6 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
     public static function use(?StreamFactoryInterface $instance): void
     {
         self::$singleton = $instance;
-        self::$using     = $instance;
+        self::$using = $instance;
     }
 }
