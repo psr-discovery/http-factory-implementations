@@ -33,7 +33,7 @@ final class RequestFactories extends Implementation implements RequestFactoriesC
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$extendedCandidates instanceof CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -48,7 +48,7 @@ final class RequestFactories extends Implementation implements RequestFactoriesC
      */
     public static function candidates(): CandidatesCollection
     {
-        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$candidates instanceof CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -134,7 +134,7 @@ final class RequestFactories extends Implementation implements RequestFactoriesC
      */
     public static function discover(): ?RequestFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\RequestFactoryInterface) {
+        if (self::$using instanceof RequestFactoryInterface) {
             return self::$using;
         }
 
@@ -162,7 +162,7 @@ final class RequestFactories extends Implementation implements RequestFactoriesC
 
     public static function singleton(): ?RequestFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\RequestFactoryInterface) {
+        if (self::$using instanceof RequestFactoryInterface) {
             return self::$using;
         }
 

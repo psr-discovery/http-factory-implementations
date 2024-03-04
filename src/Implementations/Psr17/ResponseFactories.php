@@ -33,7 +33,7 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$extendedCandidates instanceof CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -48,7 +48,7 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
      */
     public static function candidates(): CandidatesCollection
     {
-        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$candidates instanceof CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -134,7 +134,7 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
      */
     public static function discover(): ?ResponseFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\ResponseFactoryInterface) {
+        if (self::$using instanceof ResponseFactoryInterface) {
             return self::$using;
         }
 
@@ -162,7 +162,7 @@ final class ResponseFactories extends Implementation implements ResponseFactorie
 
     public static function singleton(): ?ResponseFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\ResponseFactoryInterface) {
+        if (self::$using instanceof ResponseFactoryInterface) {
             return self::$using;
         }
 

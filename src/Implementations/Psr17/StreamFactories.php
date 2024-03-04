@@ -33,7 +33,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$extendedCandidates instanceof CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -48,7 +48,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function candidates(): CandidatesCollection
     {
-        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$candidates instanceof CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -134,7 +134,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
      */
     public static function discover(): ?StreamFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\StreamFactoryInterface) {
+        if (self::$using instanceof StreamFactoryInterface) {
             return self::$using;
         }
 
@@ -162,7 +162,7 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
 
     public static function singleton(): ?StreamFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\StreamFactoryInterface) {
+        if (self::$using instanceof StreamFactoryInterface) {
             return self::$using;
         }
 
