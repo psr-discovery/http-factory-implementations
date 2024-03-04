@@ -63,6 +63,12 @@ $responseFactory = Discover::httpResponseFactory();
 // Returns a PSR-17 StreamFactoryInterface instance
 $streamFactory = Discover::httpStreamFactory();
 
+// Returns a PSR-17 UploadedFileFactoryInterface instance
+$uploadedFileFactory = Discover::httpUploadedFileFactory();
+
+// Returns a PSR-17 UriFactoryInterface instance
+$uriFactory = Discover::httpUriFactory();
+
 // Returns a PSR-7 RequestInterface instance
 $request = $requestFactory->createRequest('GET', 'https://example.com');
 ```
