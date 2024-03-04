@@ -33,7 +33,7 @@ final class UploadedFileFactories extends Implementation implements UploadedFile
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$extendedCandidates instanceof CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -48,7 +48,7 @@ final class UploadedFileFactories extends Implementation implements UploadedFile
      */
     public static function candidates(): CandidatesCollection
     {
-        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$candidates instanceof CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -128,7 +128,7 @@ final class UploadedFileFactories extends Implementation implements UploadedFile
      */
     public static function discover(): ?UploadedFileFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\UploadedFileFactoryInterface) {
+        if (self::$using instanceof UploadedFileFactoryInterface) {
             return self::$using;
         }
 
@@ -156,7 +156,7 @@ final class UploadedFileFactories extends Implementation implements UploadedFile
 
     public static function singleton(): ?UploadedFileFactoryInterface
     {
-        if (self::$using instanceof \Psr\Http\Message\UploadedFileFactoryInterface) {
+        if (self::$using instanceof UploadedFileFactoryInterface) {
             return self::$using;
         }
 
