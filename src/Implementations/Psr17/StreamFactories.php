@@ -126,6 +126,12 @@ final class StreamFactories extends Implementation implements StreamFactoriesCon
             builder: static fn (string $class = '\HttpSoft\Message\StreamFactory'): object => new $class(),
         ));
 
+        self::$candidates->add(CandidateEntity::create(
+            package: 'art4/requests-psr18-adapter',
+            version: '^1.3',
+            builder: static fn (string $class = '\Art4\Requests\Psr\HttpClient'): object => new $class(),
+        ));
+
         return self::$candidates;
     }
 
